@@ -312,7 +312,9 @@
   />
 
   <span>Welcome</span>
-
+  <script>
+    location.reload();
+    </script>
 
 </div>
 <br>
@@ -322,8 +324,11 @@
   <div class="container-fluid">
   <ul class="nav navbar-nav">
   <li class="active"><a class="nav-link" routerLink="/">Home</a></li>
-  <li> <a class="nav-link" routerLink="/login">login</a></li>
+  <li> <a class="nav-link" routerLink="/api/auth">Login</a></li>
   <li><a class="nav-link" routerLink="/account">Account</a></li>
+  <li><a class="nav-link" (click)="checkValid()">Profile</a></li>
+  <li><button type="button" (click)="logOut()"
+    style="padding-left: 2.5rem; padding-right: 2.5rem;">Logout</button></li>
   </ul>
   </div>
  </nav>

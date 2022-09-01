@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
+
+const BACKEND_URL = 'http://localhost:3000';
 
 @Component({
   selector: 'app-login',
@@ -9,33 +15,33 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email='';
-  pwd='';
-  account=false;
-  preAccount=[
-    {'email':'abc@com.au', 'pwd':'123'},
-    {'email':'tony@com.au', 'pwd':'456'},
-    {'email':'anh@com.au', 'pwd':'789'},
-  ];
+  user = {
+    username:'',
+    password:'',
+    email:'',
+    age:'',
+    birthday:'',
+    valid:'no',
+  };
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
-  onSubmit(){
+  onSubmit() {
 
-    for (let i=0; i<this.preAccount.length; i++){
-      if (this.email == this.preAccount[i].email && this.pwd == this.preAccount[i].pwd){
-        this.account=true
-        break;
+    this.httpClient.post(BACKEND_URL + '/api/auth', this.user).subscribe((data:any)=>{
+      if (data.ok = true) {
+        this.user.valid = 'yes';
+        sessionStorage.setItem('username', this.user.username);
+        sessionStorage.setItem('email', this.user.email);
+        sessionStorage.setItem('age', this.user.age);
+        sessionStorage.setItem('birthday', this.user.birthday);
+        sessionStorage.setItem('valid', this.user.valid);
+        this.router.navigateByUrl('/account');
+      } else {
+        alert('Invalid account!');
       }
-    }
-
-    if (this.account == true){
-      this.router.navigateByUrl('/account');
-    } else {
-      alert("Account is invalid!");
-    }
+    });
   }
 }

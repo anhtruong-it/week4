@@ -1,0 +1,39 @@
+<p>Profile works!</p>
+
+<form>
+  <!-- Username input -->
+    <div class="form-outline mb-4">
+      <input type="text" [(ngModel)]="username" name="username" (change)="editUsername()"
+      id="form3Example3" class="form-control form-control-lg"/>
+      <label class="form-label" for="form3Example3">Username</label>
+      <button type="button" (click)="editUsername()" style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" [(ngModel)]="email" name="email" (change)="editEmail()"
+      id="form5Example5" class="form-control form-control-lg"/>
+      <label class="form-label" for="form5Example5">Email address</label>
+      <button type="button" (click)="editEmail()"
+      style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+    </div>
+
+    <!-- Birthday input -->
+    <div class="form-outline mb-4">
+      <input type="datel" [(ngModel)]="birthday" name="birthday" (change)="editBirthday()"
+      id="form6Example6" class="form-control form-control-lg"/>
+      <label class="form-label" for="form6Example6">Birthday</label>
+      <button type="button" (click)="editBirthday()"
+      style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+    </div>
+
+    <!-- Age input -->
+    <div class="form-outline mb-4">
+      <input type="datel" [(ngModel)]="age" name="age" (change)="editAge()"
+      id="form7Example7" class="form-control form-control-lg"/>
+      <label class="form-label" for="form7Example7">Age</label>
+      <button type="button" (click)="editAge()"
+      style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+    </div>
+</form>
+
